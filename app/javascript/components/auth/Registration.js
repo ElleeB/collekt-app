@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 export default class Registration extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
-      password_confirmation: "",
-      registrationErrors: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+        registrationErrors: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,10 +23,12 @@ export default class Registration extends Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
+
     const { email, password, password_confirmation } = this.state;
 
-    fetch.post(
-      "http://localhost:3000/registrations",
+    axios.post(
+      "http://localhost:3001/registrations",
       {
         user: {
           email: email,
@@ -37,13 +40,11 @@ export default class Registration extends Component {
       { withCredentials: true }
     )
     .then(response => {
-      debugger
+      console.log("registration response", response);
     })
-    .cath(error => {
-      debugger
+    .catch(error => {
+      console.log(error)
     })
-
-    event.preventDefault();
   }
 
   render() {
