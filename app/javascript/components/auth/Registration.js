@@ -36,7 +36,6 @@ export default class Registration extends Component {
           password_confirmation: password_confirmation
         }
       },
-      // tells API ok to set cookie in client
       { withCredentials: true }
     )
     .then(response => {

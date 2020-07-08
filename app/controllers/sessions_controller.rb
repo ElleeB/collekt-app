@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params["user"]["email"]).try(:authenticate, params["user"]["password"])
-    # curl --header "Content-Type: application/json" --request POST --data '{"user": {"email": "l@email.com", "password": "asd"}}' "http://localhost:3001/sessions"
 
     if user
       session[:user_id] = user.id
