@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 // import axios from 'axios';
-import { login } from '../../actions/login'
+import { login } from '../../actions/auth/login'
 
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -27,24 +28,8 @@ export default class Login extends Component {
     event.preventDefault();
 
     const { email, password } = this.state;
-
+    
     login({ email, password })
-  //   axios.post(
-  //     "http://localhost:3001/login",
-  //     {
-  //       user: {
-  //         email: email,
-  //         password: password
-  //       }
-  //     },
-  //     { withCredentials: true }
-  //   )
-  //   .then(response => {
-  //     console.log("login response", response);
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
   }
 
   render() {
@@ -76,3 +61,13 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogin: user => {
+      dispatch(login(user));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Login);
