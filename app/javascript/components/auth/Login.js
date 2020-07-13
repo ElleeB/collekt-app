@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import axios from 'axios';
+// import axios from 'axios';
+import { login } from '../../actions/login'
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -26,22 +28,23 @@ export default class Login extends Component {
 
     const { email, password } = this.state;
 
-    axios.post(
-      "http://localhost:3001/login",
-      {
-        user: {
-          email: email,
-          password: password
-        }
-      },
-      { withCredentials: true }
-    )
-    .then(response => {
-      console.log("login response", response);
-    })
-    .catch(error => {
-      console.log(error)
-    })
+    login({ email, password })
+  //   axios.post(
+  //     "http://localhost:3001/login",
+  //     {
+  //       user: {
+  //         email: email,
+  //         password: password
+  //       }
+  //     },
+  //     { withCredentials: true }
+  //   )
+  //   .then(response => {
+  //     console.log("login response", response);
+  //   })
+  //   .catch(error => {
+  //     console.log(error)
+  //   })
   }
 
   render() {
